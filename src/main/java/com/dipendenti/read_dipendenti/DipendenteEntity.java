@@ -5,7 +5,7 @@ import lombok.Data;
 
 
 @Data
-public class DipendenteDTO {
+public class DipendenteEntity {
     private String codiceMatricola;
     private String nome;
     private String cognome;
