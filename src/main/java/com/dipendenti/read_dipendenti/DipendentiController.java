@@ -17,4 +17,11 @@ public class DipendentiController {
         return ResponseEntity.ok(dipendenteDTO);
     }
 
+
+    // TODO: da implementare
+/*    @GetMapping("/csv")
+    public ResponseEntity<byte[]> getCSVFile(){
+        return null;
+    }*/
+
 }
