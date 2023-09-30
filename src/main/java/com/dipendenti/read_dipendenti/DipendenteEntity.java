@@ -12,5 +12,4 @@ public class DipendenteEntity {
     private String codiceFiscale;
     private String dataDiNascita;
     private String ruolo;
-
 }
