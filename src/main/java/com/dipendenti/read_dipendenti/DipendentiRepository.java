@@ -20,6 +20,7 @@ import java.util.stream.StreamSupport;
 @Repository
 public class DipendentiRepository {
 
+    // TODO: ottimizzare i metodi, ovvero estrarre la parte in comune per evitare la duplicazione del codice
     private final String documentPath = System.getProperty("user.home") + "/Documents";
     private final String documentName = "dipendenti.csv";
 
@@ -65,11 +66,7 @@ public class DipendentiRepository {
         CSVParser csvParser = CSVParser.parse(csvPath, Charset.defaultCharset(),
                 CSVFormat.DEFAULT.withHeader("Codice matricola", "Nome", "Cognome", "Codice fiscale", "Data di Nascita'", "Ruolo" ));
 
-/*
-        csvParser.forEach(csvRecord -> {
-            System.out.println(csvRecord.toMap());
-        });
-*/
+
         // CSV -> Stream
         Stream<CSVRecord> csvRecordStream = StreamSupport.stream(csvParser.spliterator(), false);
 
@@ -85,7 +82,7 @@ public class DipendentiRepository {
         List<DipendenteEntity> dipendenteEntityList = rowList
                 .stream()
                 .map(row -> new DipendenteEntity(row))
-                .filter(dipendente -> codiceFiscale.equals(dipendente.getCodiceMatricola()))
+                .filter(dipendente -> codiceFiscale.equals(dipendente.getCodiceFiscale()))
                 .collect(Collectors.toList());
 
 
