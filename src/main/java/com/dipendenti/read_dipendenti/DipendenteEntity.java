@@ -17,11 +17,11 @@ public class DipendenteEntity {
     private String ruolo;
 
     public DipendenteEntity(Map<String, String> row){
-        this.codiceMatricola = row.get("Codice matricola");
-        this.nome = row.get("Nome");
-        this.cognome = row.get("Cognome");
-        this.codiceFiscale = row.get("Codice fiscale");
-        this.dataDiNascita = row.get("Data di nascita");
-        this.ruolo = row.get("Ruolo");
+        this.codiceMatricola = row.get("codiceMatricola");
+        this.nome = row.get("nome");
+        this.cognome = row.get("cognome");
+        this.codiceFiscale = row.get("codiceFiscale");
+        this.dataDiNascita = row.get("dataDiNascita");
+        this.ruolo = row.get("ruolo");
     }
 }
