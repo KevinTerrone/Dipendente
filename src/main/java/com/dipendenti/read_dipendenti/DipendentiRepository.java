@@ -22,7 +22,7 @@ import java.util.stream.StreamSupport;
 public class DipendentiRepository {
     private final String documentPath = System.getProperty("user.home") + "/Documents";
     private final String documentName = "dipendenti.csv";
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
 
     public DipendenteEntity getDipendenteByCMatricolaORCFiscale(String id) throws IOException {
@@ -30,29 +30,15 @@ public class DipendentiRepository {
             Path csvPath = csvDirectory.resolve(documentName);
 
             CSVParser csvParser = CSVParser.parse(csvPath, Charset.defaultCharset(),
-                    CSVFormat.DEFAULT.withHeader("codiceMatricola", "nome", "cognome", "codiceFiscale", "dataDiNascita", "ruolo" ));
+                                                    CSVFormat.DEFAULT.withHeader("codiceMatricola", "nome", "cognome", "codiceFiscale", "dataDiNascita", "ruolo" ));
 
 
-            // CSV -> Stream
-            Stream<CSVRecord> csvRecordStream = StreamSupport.stream(csvParser.spliterator(), false);
-
-            // Stream -> List<String, String>
-            List<Map<String, String>> rowList = csvRecordStream
-                    .skip(1)
-                    .map(CSVRecord::toMap)
-                    .collect(Collectors.toList());
-
-
-            logger.info(rowList.toString());
-
-            // List<String, String> -> List<DipendenteEntity>
-            List<DipendenteEntity> dipendenteEntityList = rowList
-                    .stream()
-                    .map(row -> new DipendenteEntity(row))
-                    .filter(dipendente -> id.equals(dipendente.getCodiceMatricola()) || id.equals(dipendente.getCodiceFiscale() ))
-                    .collect(Collectors.toList());
-
-
+            List<DipendenteEntity> dipendenteEntityList  =  StreamSupport.stream(csvParser.spliterator(), false)
+                                                            .skip(1)
+                                                            .map(CSVRecord::toMap)
+                                                            .map(row -> new DipendenteEntity(row))
+                                                            .filter(dipendente -> id.equals(dipendente.getCodiceMatricola()) || id.equals(dipendente.getCodiceFiscale() ))
+                                                            .collect(Collectors.toList());
 
             return dipendenteEntityList.isEmpty() ? new DipendenteEntity() : dipendenteEntityList.get(0);
         }
