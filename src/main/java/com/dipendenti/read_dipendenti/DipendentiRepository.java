@@ -31,13 +31,9 @@ public class DipendentiRepository {
             Path csvPath = csvDirectory.resolve(documentName);
 
             CSVParser csvParser = CSVParser.parse(csvPath, Charset.defaultCharset(),
-                    CSVFormat.DEFAULT.withHeader("Codice matricola", "Nome", "Cognome", "Codice fiscale", "Data di Nascita'", "Ruolo" ));
+                    CSVFormat.DEFAULT.withHeader("Codice matricola", "Nome", "Cognome", "Codice fiscale", "Data di nascita'", "Ruolo" ));
 
-/*
-        csvParser.forEach(csvRecord -> {
-            System.out.println(csvRecord.toMap());
-        });
-*/
+
             // CSV -> Stream
             Stream<CSVRecord> csvRecordStream = StreamSupport.stream(csvParser.spliterator(), false);
 
