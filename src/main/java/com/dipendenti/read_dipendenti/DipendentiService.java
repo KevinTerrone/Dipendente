@@ -1,5 +1,6 @@
 package com.dipendenti.read_dipendenti;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -7,12 +8,13 @@ import java.io.IOException;
 @Service
 public class DipendentiService {
 
+    @Autowired
     private DipendentiRepository dipendentiRepository;
-    private DipendenteDTO dipendenteDTO;
-    private DipendenteEntity dipendenteEntity;
+
 
     public DipendenteDTO getDipendenteByID(String id) throws IOException {
-        dipendenteEntity = dipendentiRepository.getDipendenteByCMatricolaORCFiscale(id);
+        DipendenteDTO dipendenteDTO = new DipendenteDTO();
+        DipendenteEntity dipendenteEntity = dipendentiRepository.getDipendenteByCMatricolaORCFiscale(id);
         dipendenteDTO.setCodiceMatricola(dipendenteEntity.getCodiceMatricola());
         dipendenteDTO.setNome(dipendenteEntity.getNome());
         dipendenteDTO.setRuolo(dipendenteEntity.getRuolo());
