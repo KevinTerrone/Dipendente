@@ -34,7 +34,7 @@ public class DipendentiRepository {
                                                             .filter(dipendente -> id.equals(dipendente.getCodiceMatricola()) || id.equals(dipendente.getCodiceFiscale() ))
                                                             .collect(Collectors.toList());
 
-            return dipendenteEntityList.isEmpty() ? new DipendenteEntity() : dipendenteEntityList.get(0);
+            return dipendenteEntityList.isEmpty() ? null : dipendenteEntityList.get(0);
         }
 
 

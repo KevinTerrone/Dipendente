@@ -13,14 +13,19 @@ public class DipendentiService {
 
 
     public DipendenteDTO getDipendenteByID(String id) throws IOException {
-        DipendenteDTO dipendenteDTO = new DipendenteDTO();
+        DipendenteDTO dipendenteDTO = null;
         DipendenteEntity dipendenteEntity = dipendentiRepository.getDipendenteByCMatricolaORCFiscale(id);
-        dipendenteDTO.setCodiceMatricola(dipendenteEntity.getCodiceMatricola());
-        dipendenteDTO.setNome(dipendenteEntity.getNome());
-        dipendenteDTO.setRuolo(dipendenteEntity.getRuolo());
-        dipendenteDTO.setCognome(dipendenteEntity.getCognome());
-        dipendenteDTO.setCodiceFiscale(dipendenteEntity.getCodiceFiscale());
-        dipendenteDTO.setDataDiNascita(dipendenteEntity.getDataDiNascita());
+
+        if(dipendenteEntity != null){
+            dipendenteDTO = new DipendenteDTO();
+            dipendenteDTO.setCodiceMatricola(dipendenteEntity.getCodiceMatricola());
+            dipendenteDTO.setNome(dipendenteEntity.getNome());
+            dipendenteDTO.setRuolo(dipendenteEntity.getRuolo());
+            dipendenteDTO.setCognome(dipendenteEntity.getCognome());
+            dipendenteDTO.setCodiceFiscale(dipendenteEntity.getCodiceFiscale());
+            dipendenteDTO.setDataDiNascita(dipendenteEntity.getDataDiNascita());
+        }
+
         return dipendenteDTO;
     }
 
