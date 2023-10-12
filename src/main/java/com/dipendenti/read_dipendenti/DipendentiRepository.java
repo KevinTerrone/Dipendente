@@ -20,28 +20,32 @@ public class DipendentiRepository {
     private final String documentName = "dipendenti.csv";
 
     public DipendenteEntity getDipendenteByCMatricolaORCFiscale(String id) throws IOException {
-            Path csvDirectory = Paths.get(documentPath);
-            Path csvPath = csvDirectory.resolve(documentName);
+        Path csvDirectory = Paths.get(documentPath);
+        Path csvPath = csvDirectory.resolve(documentName);
 
-            CSVParser csvParser = CSVParser.parse(csvPath, Charset.defaultCharset(),
-                                                    CSVFormat.DEFAULT.withHeader("codiceMatricola", "nome", "cognome", "codiceFiscale", "dataDiNascita", "ruolo" ));
+        CSVParser csvParser = CSVParser.parse(csvPath, Charset.defaultCharset(),
+                                                CSVFormat.DEFAULT.withHeader("codiceMatricola", "nome", "cognome", "codiceFiscale", "dataDiNascita", "ruolo" ));
 
-
-            List<DipendenteEntity> dipendenteEntityList  =  StreamSupport.stream(csvParser.spliterator(), false)
-                                                            .skip(1)
-                                                            .map(CSVRecord::toMap)
-                                                            .map(row -> new DipendenteEntity(row))
-                                                            .filter(dipendente -> id.equals(dipendente.getCodiceMatricola()) || id.equals(dipendente.getCodiceFiscale() ))
-                                                            .collect(Collectors.toList());
-
-            return dipendenteEntityList.isEmpty() ? null : dipendenteEntityList.get(0);
-        }
+        List<DipendenteEntity> dipendenteEntityList = getListOfDipendenteEntityFromCSVParser(csvParser, id);
 
 
+        return dipendenteEntityList.isEmpty() ? null : dipendenteEntityList.get(0);
+    }
 
 
     public byte[] getCSVFileWithAllDipendenti() throws IOException{
         return Files.readAllBytes(Paths.get(documentPath+"\\"+documentName));
+    }
+
+    private List<DipendenteEntity> getListOfDipendenteEntityFromCSVParser(CSVParser csvParser, String id){
+        List<DipendenteEntity> dipendenteEntityList  =  StreamSupport.stream(csvParser.spliterator(), false)
+                .skip(1)
+                .map(CSVRecord::toMap)
+                .map(row -> new DipendenteEntity(row))
+                .filter(dipendente -> id.equals(dipendente.getCodiceMatricola()) || id.equals(dipendente.getCodiceFiscale() ))
+                .collect(Collectors.toList());
+
+        return dipendenteEntityList;
     }
 
 }
