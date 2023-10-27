@@ -1,9 +1,10 @@
-package com.dipendenti.read_dipendenti;
+package com.dipendenti.read_dipendenti.controller;
 
+import com.dipendenti.read_dipendenti.DipendenteDTO;
+import com.dipendenti.read_dipendenti.service.DipendentiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
