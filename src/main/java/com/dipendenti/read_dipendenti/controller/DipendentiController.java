@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class DipendentiController {
 
-
-
     @Autowired
     private DipendentiService dipendentiService;
     @GetMapping("/{id}")
@@ -26,13 +24,14 @@ public class DipendentiController {
         try {
             log.info("Inizio ricerca dipendente singolo");
             dipendenteDTO = dipendentiService.getDipendenteByID(id);
-            log.info("Fine ricerca dipendente singolo");
+
 
         }catch (Exception e){
             log.info("Errore ricerca dipendente singolo {}",e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
 
+        log.info("Fine ricerca dipendente singolo");
         return ResponseEntity.ok(dipendenteDTO);
     }
 
@@ -42,13 +41,15 @@ public class DipendentiController {
         byte[] csvFile = null;
 
         try {
-            log.info("Inizio ricerca dipendenti");
+            log.info("Inizio download file dipendenti");
             csvFile = dipendentiService.getDipendenti();
-            log.info("Fine ricerca dipendenti");
+
         }catch (Exception e){
             log.info("Errore ricerca dipendenti {}",e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
+
+        log.info("Fine ricerca dipendenti");
         return ResponseEntity.ok(csvFile);
     }
 

@@ -4,7 +4,9 @@ import com.dipendenti.read_dipendenti.Entity.DipendenteEntity;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.annotation.Validated;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -18,7 +20,10 @@ import java.util.stream.StreamSupport;
 @Repository
 public class DipendentiRepository {
     private final String documentPath = System.getProperty("user.home") + "/Documents";
-    private final String documentName = "dipendenti.csv";
+
+    @Value("dipendenti.csv")
+    private String documentName;
+
 
     public DipendenteEntity getDipendenteByCMatricolaORCFiscale(String id) throws IOException {
         Path csvDirectory = Paths.get(documentPath);
