@@ -1,7 +1,7 @@
 package com.dipendenti.read_dipendenti.service;
 
-import com.dipendenti.read_dipendenti.DipendenteDTO;
-import com.dipendenti.read_dipendenti.DipendenteEntity;
+import com.dipendenti.read_dipendenti.DTO.DipendenteDTO;
+import com.dipendenti.read_dipendenti.Entity.DipendenteEntity;
 import com.dipendenti.read_dipendenti.repository.DipendentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

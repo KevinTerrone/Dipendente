@@ -1,6 +1,6 @@
 package com.dipendenti.read_dipendenti.repository;
 
-import com.dipendenti.read_dipendenti.DipendenteEntity;
+import com.dipendenti.read_dipendenti.Entity.DipendenteEntity;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

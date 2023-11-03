@@ -1,7 +1,8 @@
 package com.dipendenti.read_dipendenti.controller;
 
-import com.dipendenti.read_dipendenti.DipendenteDTO;
+import com.dipendenti.read_dipendenti.DTO.DipendenteDTO;
 import com.dipendenti.read_dipendenti.service.DipendentiService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/dipendenti")
+@Slf4j
 public class DipendentiController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @Autowired
     private DipendentiService dipendentiService;
@@ -22,9 +24,12 @@ public class DipendentiController {
         DipendenteDTO dipendenteDTO = null;
 
         try {
+            log.info("Inizio ricerca dipendente singolo");
             dipendenteDTO = dipendentiService.getDipendenteByID(id);
+            log.info("Fine ricerca dipendente singolo");
+
         }catch (Exception e){
-            logger.info(e.getMessage());
+            log.info("Errore ricerca dipendente singolo {}",e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
 
@@ -37,9 +42,11 @@ public class DipendentiController {
         byte[] csvFile = null;
 
         try {
+            log.info("Inizio ricerca dipendenti");
             csvFile = dipendentiService.getDipendenti();
+            log.info("Fine ricerca dipendenti");
         }catch (Exception e){
-            logger.info(e.getMessage());
+            log.info("Errore ricerca dipendenti {}",e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
         return ResponseEntity.ok(csvFile);
