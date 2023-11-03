@@ -5,9 +5,14 @@ import com.dipendenti.read_dipendenti.repository.DipendentiRepository;
 import com.dipendenti.read_dipendenti.service.DipendentiService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
@@ -15,12 +20,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest
 class DipendentiServiceTest {
 
-    @Mock
+    @MockBean
     DipendentiRepository mockRepository;
 
-    @InjectMocks
+
+    @Autowired
     DipendentiService service;
 
 
