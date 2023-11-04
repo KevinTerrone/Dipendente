@@ -35,7 +35,7 @@ public class DipendentiService {
         return dipendenteDTO;
     }
 
-    public byte[] getDipendenti() throws IOException{
+    public byte[] getDipendenti() throws Exception{
         return dipendentiRepository.getCSVFileWithAllDipendenti();
     }
 }
