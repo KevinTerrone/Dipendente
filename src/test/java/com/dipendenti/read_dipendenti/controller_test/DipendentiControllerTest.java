@@ -1,4 +1,4 @@
-package com.dipendenti.read_dipendenti;
+package com.dipendenti.read_dipendenti.controller_test;
 
 import com.dipendenti.read_dipendenti.service.DipendentiService;
 import org.junit.jupiter.api.Test;

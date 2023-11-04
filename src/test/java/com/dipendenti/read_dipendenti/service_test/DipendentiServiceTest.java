@@ -1,4 +1,4 @@
-package com.dipendenti.read_dipendenti;
+package com.dipendenti.read_dipendenti.service_test;
 
 import com.dipendenti.read_dipendenti.entity.DipendenteEntity;
 import com.dipendenti.read_dipendenti.custom_exception.DipendenteNotFoundException;
@@ -47,5 +47,19 @@ class DipendentiServiceTest {
         assertNotNull(service.getDipendenteByID("X000005"));
         assertNotNull(service.getDipendenteByID("GGGVVV0X000X000X"));
     }
+
+
+    @Test
+    void getDipendenti_ThrowsException() throws Exception {
+
+
+    }
+
+    @Test
+    void getDipendenti_DoFoundTest() throws Exception {
+
+    
+    }
+
 
 }
