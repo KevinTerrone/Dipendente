@@ -1,6 +1,7 @@
 package com.dipendenti.read_dipendenti;
 
 import com.dipendenti.read_dipendenti.Entity.DipendenteEntity;
+import com.dipendenti.read_dipendenti.custom_exception.DipendenteNotFoundException;
 import com.dipendenti.read_dipendenti.repository.DipendentiRepository;
 import com.dipendenti.read_dipendenti.service.DipendentiService;
 import org.junit.jupiter.api.AfterEach;
@@ -33,14 +34,14 @@ class DipendentiServiceTest {
 
 
     @Test
-    void getDipendenteByID_NotFoundTest() throws IOException {
+    void getDipendenteByID_NotFoundTest() throws Exception {
         when(mockRepository.getDipendenteByCMatricolaORCFiscale(any())).thenReturn(null);
-      /*  assertNull(service.getDipendenteByID("A000001"));
-        assertNull(service.getDipendenteByID("CCCPPP0X000X000X"));*/
+        assertThrows(DipendenteNotFoundException.class, () -> {service.getDipendenteByID("A000001");});
+        assertThrows(DipendenteNotFoundException.class ,() -> {service.getDipendenteByID("CCCPPP0X000X000X");});
     }
 
     @Test
-    void getDipendenteByID_FoundTest() throws IOException {
+    void getDipendenteByID_DoFoundTest() throws Exception {
 
         DipendenteEntity entity = new DipendenteEntity();
         entity.setCodiceMatricola("X000005");
@@ -51,8 +52,8 @@ class DipendentiServiceTest {
 
 
         when(mockRepository.getDipendenteByCMatricolaORCFiscale(any())).thenReturn(entity);
-       /* assertNotNull(service.getDipendenteByID("X000005"));
-        assertNotNull(service.getDipendenteByID("GGGVVV0X000X000X"));*/
+        assertNotNull(service.getDipendenteByID("X000005"));
+        assertNotNull(service.getDipendenteByID("GGGVVV0X000X000X"));
     }
 
 }
