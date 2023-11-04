@@ -1,4 +1,4 @@
-package com.dipendenti.read_dipendenti.Entity;
+package com.dipendenti.read_dipendenti.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

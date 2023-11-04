@@ -1,9 +1,5 @@
 package com.dipendenti.read_dipendenti;
 
-import com.dipendenti.read_dipendenti.Entity.DipendenteEntity;
-import com.dipendenti.read_dipendenti.controller.DipendentiController;
-import com.dipendenti.read_dipendenti.custom_exception.DipendenteNotFoundException;
-import com.dipendenti.read_dipendenti.repository.DipendentiRepository;
 import com.dipendenti.read_dipendenti.service.DipendentiService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.io.IOException;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

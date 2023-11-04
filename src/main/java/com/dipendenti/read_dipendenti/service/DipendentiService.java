@@ -1,13 +1,11 @@
 package com.dipendenti.read_dipendenti.service;
 
-import com.dipendenti.read_dipendenti.DTO.DipendenteDTO;
-import com.dipendenti.read_dipendenti.Entity.DipendenteEntity;
+import com.dipendenti.read_dipendenti.dto.DipendenteDTO;
+import com.dipendenti.read_dipendenti.entity.DipendenteEntity;
 import com.dipendenti.read_dipendenti.custom_exception.DipendenteNotFoundException;
 import com.dipendenti.read_dipendenti.repository.DipendentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 @Service
 public class DipendentiService {

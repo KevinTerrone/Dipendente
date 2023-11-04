@@ -1,4 +1,4 @@
-package com.dipendenti.read_dipendenti.DTO;
+package com.dipendenti.read_dipendenti.dto;
 
 import lombok.Data;
 

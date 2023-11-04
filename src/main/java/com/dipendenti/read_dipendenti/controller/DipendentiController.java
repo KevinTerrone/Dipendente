@@ -1,6 +1,6 @@
 package com.dipendenti.read_dipendenti.controller;
 
-import com.dipendenti.read_dipendenti.DTO.DipendenteDTO;
+import com.dipendenti.read_dipendenti.dto.DipendenteDTO;
 import com.dipendenti.read_dipendenti.custom_exception.DipendenteNotFoundException;
 import com.dipendenti.read_dipendenti.custom_exception.GetDipendentiException;
 import com.dipendenti.read_dipendenti.service.DipendentiService;
