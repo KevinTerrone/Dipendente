@@ -35,8 +35,7 @@ public class DipendentiController {
         }catch (DipendenteNotFoundException e){
             log.error(e.getMessage());
             throw new DipendenteNotFoundException();
-        }
-        catch (IOException e){
+        }catch (IOException e){
             log.error("Errore I/O ricerca dipendente singolo {}",e.getMessage());
             throw new GetDipendentiException("Errore I/O ricerca dipendente singolo " + e.getMessage());
         }catch (Exception e){
@@ -56,7 +55,6 @@ public class DipendentiController {
         try {
             log.info("Inizio download file dipendenti");
             csvFile = dipendentiService.getDipendenti();
-
         }catch (IOException e){
             log.error("Errore I/O durante download file dipendenti",e.getMessage());
             throw new GetDipendentiException("Errore I/O durante download file dipendenti " + e.getMessage());

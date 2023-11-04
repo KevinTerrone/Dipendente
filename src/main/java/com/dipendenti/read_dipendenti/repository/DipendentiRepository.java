@@ -21,7 +21,7 @@ import java.util.stream.StreamSupport;
 public class DipendentiRepository {
     private final String documentPath = System.getProperty("user.home") + "/Documents";
 
-    @Value("dipendenti.csv")
+    @Value("${dipendenti.csv.file.name}")
     private String documentName;
 
 

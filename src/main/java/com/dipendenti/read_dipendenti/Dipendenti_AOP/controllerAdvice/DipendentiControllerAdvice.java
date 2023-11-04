@@ -1,4 +1,4 @@
-package com.dipendenti.read_dipendenti.DipendentiAOP.controllerAdvice;
+package com.dipendenti.read_dipendenti.Dipendenti_AOP.controllerAdvice;
 
 import com.dipendenti.read_dipendenti.custom_exception.DipendenteNotFoundException;
 import com.dipendenti.read_dipendenti.custom_exception.GetDipendentiException;
