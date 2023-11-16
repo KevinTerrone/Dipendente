@@ -37,6 +37,7 @@ class DipendentiServiceTest {
 
         DipendenteEntity entity = new DipendenteEntity();
         entity.setCodiceMatricola("X000005");
+        entity.setCodiceFiscale("PPPPPP0X000X000X");
         entity.setNome("Goku");
         entity.setCognome("Vegeta");
         entity.setDataDiNascita("01/05/2021");

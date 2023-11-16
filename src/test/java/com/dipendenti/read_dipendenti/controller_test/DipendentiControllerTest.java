@@ -1,5 +1,8 @@
 package com.dipendenti.read_dipendenti.controller_test;
 
+import com.dipendenti.read_dipendenti.custom_exception.DipendenteNotFoundException;
+import com.dipendenti.read_dipendenti.dto.DipendenteDTO;
+import com.dipendenti.read_dipendenti.entity.DipendenteEntity;
 import com.dipendenti.read_dipendenti.service.DipendentiService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +43,32 @@ class DipendentiControllerTest {
     }
 
     @Test
-    void  getSingoloDipendenteByCodiceMatricola_shouldReturn404Status_test(){
+    void  getSingoloDipendenteByCodiceMatricola_shouldReturn404Status_test() throws Exception {
+        when(mockService.getDipendenteByID(any())).thenThrow(DipendenteNotFoundException.class);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/dipendenti/A000001")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
 
     }
 
     @Test
-    void  getSingoloDipendenteByCodiceMatricola_shouldReturn200Status_test(){
+    void  getSingoloDipendenteByCodiceMatricola_shouldReturn200Status_test() throws Exception {
+        DipendenteDTO dipendenteDTO = new DipendenteDTO();
+        dipendenteDTO.setCodiceMatricola("X000005");
+        dipendenteDTO.setCodiceFiscale("PPPPPP0X000X000X");
+        dipendenteDTO.setNome("Goku");
+        dipendenteDTO.setCognome("Vegeta");
+        dipendenteDTO.setDataDiNascita("01/05/2021");
+        dipendenteDTO.setRuolo("consulente");
 
+        when(mockService.getDipendenteByID(any())).thenReturn(dipendenteDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/dipendenti/A000001")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     //----------------------------------------
@@ -62,13 +84,31 @@ class DipendentiControllerTest {
     }
 
     @Test
-    void  getSingoloDipendenteByCodiceFiscale_shouldReturn404Status_test(){
+    void  getSingoloDipendenteByCodiceFiscale_shouldReturn404Status_test() throws Exception {
+        when(mockService.getDipendenteByID(any())).thenThrow(DipendenteNotFoundException.class);
 
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/dipendenti/PPPPPP0X000X000X")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 
     @Test
-    void  getSingoloDipendenteCodiceFiscale_shouldReturn200Status_test(){
+    void  getSingoloDipendenteCodiceFiscale_shouldReturn200Status_test() throws Exception {
+        DipendenteDTO dipendenteDTO = new DipendenteDTO();
+        dipendenteDTO.setCodiceMatricola("X000005");
+        dipendenteDTO.setCodiceFiscale("PPPPPP0X000X000X");
+        dipendenteDTO.setNome("Goku");
+        dipendenteDTO.setCognome("Vegeta");
+        dipendenteDTO.setDataDiNascita("01/05/2021");
+        dipendenteDTO.setRuolo("consulente");
 
+        when(mockService.getDipendenteByID(any())).thenReturn(dipendenteDTO);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/dipendenti/PPPPPP0X000X000X")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
 
