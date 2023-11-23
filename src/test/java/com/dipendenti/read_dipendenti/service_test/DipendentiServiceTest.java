@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -52,14 +54,14 @@ class DipendentiServiceTest {
 
     @Test
     void getDipendenti_ThrowsException() throws Exception {
-
-
+        when(mockRepository.getCSVFileWithAllDipendenti()).thenThrow(IOException.class);
+        assertThrows(IOException.class, () -> {service.getDipendenti();});
     }
 
     @Test
     void getDipendenti_DoFoundTest() throws Exception {
-
-    
+        when(mockRepository.getCSVFileWithAllDipendenti()).thenReturn(new byte[100]);
+        assertNotNull(service.getDipendenti());
     }
 
 
