@@ -43,13 +43,13 @@ class DipendentiControllerTest {
     }
 
     @Test
-    void  getSingoloDipendenteByCodiceMatricola_shouldReturn404Status_test() throws Exception {
+    void  getSingoloDipendenteByCodiceMatricola_shouldReturn204Status_test() throws Exception {
         when(mockService.getDipendenteByID(any())).thenThrow(DipendenteNotFoundException.class);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/dipendenti/A000001")
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNoContent());
 
     }
 
@@ -84,13 +84,13 @@ class DipendentiControllerTest {
     }
 
     @Test
-    void  getSingoloDipendenteByCodiceFiscale_shouldReturn404Status_test() throws Exception {
+    void  getSingoloDipendenteByCodiceFiscale_shouldReturn204Status_test() throws Exception {
         when(mockService.getDipendenteByID(any())).thenThrow(DipendenteNotFoundException.class);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/dipendenti/PPPPPP0X000X000X")
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNoContent());
     }
 
     @Test
