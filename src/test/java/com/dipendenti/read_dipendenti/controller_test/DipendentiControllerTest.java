@@ -14,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.io.IOException;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -32,7 +34,7 @@ class DipendentiControllerTest {
     //----------------------------------------
     // Test getSingoloDipendenteByCodiceMatricola
     @Test
-    void getSingoloDipendenteByCodiceMatricola_shouldReturn500Status_test() throws Exception {
+    void getSingoloDipendenteByCodiceMatricola_shouldThrowExc_test() throws Exception {
 
         when(mockService.getDipendenteByID(any())).thenThrow(Exception.class);
 
@@ -40,6 +42,17 @@ class DipendentiControllerTest {
                         .get("/dipendenti/A000001")
                         .accept(MediaType.APPLICATION_JSON))
                         .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    void getSingoloDipendenteByCodiceMatricola_shouldThrowIOExc_test() throws Exception {
+
+        when(mockService.getDipendenteByID(any())).thenThrow(IOException.class);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/dipendenti/A000001")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError());
     }
 
     @Test
@@ -74,13 +87,23 @@ class DipendentiControllerTest {
     //----------------------------------------
     // Test getSingoloDipendenteByCodiceFiscale
     @Test
-    void getSingoloDipendenteByCodiceFiscale_shouldReturn500Status_test() throws Exception {
+    void getSingoloDipendenteByCodiceFiscale_shouldThrowExc_test() throws Exception {
         when(mockService.getDipendenteByID(any())).thenThrow(Exception.class);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/dipendenti/PPPPPP0X000X000X")
                         .accept(MediaType.APPLICATION_JSON))
                         .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    void getSingoloDipendenteByCodiceFiscale_shouldThrowIOExc_test() throws Exception {
+        when(mockService.getDipendenteByID(any())).thenThrow(IOException.class);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/dipendenti/PPPPPP0X000X000X")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError());
     }
 
     @Test
@@ -114,14 +137,25 @@ class DipendentiControllerTest {
 
     // Test getAllDipendenti
     @Test
-    void  getAllDipendenti_shouldReturn500Status_test() throws Exception {
-        when(mockService.getDipendenti()).thenThrow(Exception.class);
+    void  getAllDipendenti_shouldThrowIOExc_test() throws Exception {
+        when(mockService.getDipendenti()).thenThrow(IOException.class);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/dipendenti/all")
                         .accept(MediaType.APPLICATION_JSON))
                         .andExpect(status().isInternalServerError());
     }
+
+    @Test
+    void  getAllDipendenti_shouldThrowExc_test() throws Exception {
+        when(mockService.getDipendenti()).thenThrow(Exception.class);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/dipendenti/all")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError());
+    }
+
 
     @Test
     void  getAllDipendenti_shouldReturn200Status_test() throws Exception {

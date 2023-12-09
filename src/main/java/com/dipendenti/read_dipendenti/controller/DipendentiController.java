@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/dipendenti")
+@RequestMapping("/api/dipendenti")
 @Slf4j
 public class DipendentiController {
 
@@ -33,11 +33,11 @@ public class DipendentiController {
             log.error(e.getMessage());
             throw new DipendenteNotFoundException();
         }catch (IOException e){
-            log.error("Errore I/O ricerca dipendente singolo {}",e.getMessage());
-            throw new GetDipendentiException("Errore I/O ricerca dipendente singolo " + e.getMessage());
+            log.error("Errore I/O ricerca dipendente singolo: {}",e.getMessage());
+            throw new GetDipendentiException("Errore I/O ricerca dipendente singolo: " + e.getMessage());
         }catch (Exception e){
-            log.error("Errore generico ricerca dipendente singolo {}",e.getMessage());
-            throw new Exception("Errore generico ricerca dipendente singolo " + e.getMessage());
+            log.error("Errore generico ricerca dipendente singolo: {}",e.getMessage());
+            throw new Exception("Errore generico ricerca dipendente singolo: " + e.getMessage());
         }
 
         log.info("Fine ricerca dipendente singolo");
@@ -53,11 +53,11 @@ public class DipendentiController {
             log.info("Inizio download file dipendenti");
             csvFile = dipendentiService.getDipendenti();
         }catch (IOException e){
-            log.error("Errore I/O durante download file dipendenti",e.getMessage());
-            throw new GetDipendentiException("Errore I/O durante download file dipendenti " + e.getMessage());
+            log.error("Errore I/O durante download file dipendenti: ",e.getMessage());
+            throw new GetDipendentiException("Errore I/O durante download file dipendenti: " + e.getMessage());
         }catch (Exception e){
-            log.error("Errore generico durante download file dipendenti",e.getMessage());
-            throw new Exception("Errore generico durante download file dipendenti " + e.getMessage());
+            log.error("Errore generico durante download file dipendenti: ",e.getMessage());
+            throw new Exception("Errore generico durante download file dipendenti: " + e.getMessage());
         }
 
         log.info("Fine download file dipendenti");
