@@ -21,6 +21,8 @@ public class DipendentiController {
 
     @Autowired
     private DipendentiService dipendentiService;
+
+
     @GetMapping("/{id}")
     public ResponseEntity<DipendenteDTO> getDipendenteById(@PathVariable String id) throws Exception {
 
@@ -34,13 +36,13 @@ public class DipendentiController {
             throw new DipendenteNotFoundException();
         }catch (IOException e){
             log.error("Errore I/O ricerca dipendente singolo: {}",e.getMessage());
-            throw new GetDipendentiException("Errore I/O ricerca dipendente singolo: " + e.getMessage());
+            throw new GetDipendentiException("Errore I/O ricerca dipendente singolo");
         }catch (Exception e){
             log.error("Errore generico ricerca dipendente singolo: {}",e.getMessage());
             throw new Exception("Errore generico ricerca dipendente singolo: " + e.getMessage());
         }
 
-        log.info("Fine ricerca dipendente singolo");
+        log.info("Fine ricerca dipendente singolo: "+id);
         return ResponseEntity.ok(dipendenteDTO);
     }
 
@@ -54,7 +56,7 @@ public class DipendentiController {
             csvFile = dipendentiService.getDipendenti();
         }catch (IOException e){
             log.error("Errore I/O durante download file dipendenti: ",e.getMessage());
-            throw new GetDipendentiException("Errore I/O durante download file dipendenti: " + e.getMessage());
+            throw new GetDipendentiException("Errore I/O durante download file dipendenti");
         }catch (Exception e){
             log.error("Errore generico durante download file dipendenti: ",e.getMessage());
             throw new Exception("Errore generico durante download file dipendenti: " + e.getMessage());
