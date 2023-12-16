@@ -8,7 +8,7 @@ Per utilizzare il progetto devi avere:
 
 ---
 
-Per avviare il progetto: spring-boot:run
+Per avviare il progetto: mvn spring-boot:run
 
 ---
 
