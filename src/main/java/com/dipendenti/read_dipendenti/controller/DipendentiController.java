@@ -29,7 +29,7 @@ public class DipendentiController {
         DipendenteDTO dipendenteDTO = null;
 
         try {
-            log.info("Inizio ricerca dipendente singolo");
+            log.info("Inizio ricerca dipendente singolo {}", id);
             dipendenteDTO = dipendentiService.getDipendenteByID(id);
         }catch (DipendenteNotFoundException e){
             log.error(e.getMessage());
