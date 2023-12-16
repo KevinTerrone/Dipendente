@@ -1,0 +1,8 @@
+codiceMatricola,nome,cognome,codiceFiscale,dataDiNascita,ruolo
+"A000001","Ciccio","Pasticcio","CCCPPP0X000X000X","01/01/2020","direttore"
+"0B00002","Ciccio","Cappuccio","CCCCCC0X000X000X","01/02/2021","promotore"
+"0C00003","Pippo","Pluto","PPPPPP0X000X000X","01/03/2021","consulente"
+"X000004","Topolino","Paperino","TTTPPP0X000X000X","01/04/2021","consulente"
+"X000005","Goku","Vegeta","GGGVVV0X000X000X","01/05/2021","consulente"
+"X000006","Hofinito","Lafantasia","HHHVVV0X000X000X","01/06/2022","consulente"
+"X000000","Toji","Fushiguro","THJFSG0X000X000X","01/06/1980","direttore"
